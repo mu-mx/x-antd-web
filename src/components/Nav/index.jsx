@@ -105,7 +105,7 @@ export default function Index() {
                             centered={mode === "bottom"}
                             tabPosition={mode}
                             destroyInactiveTabPane={true}
-                            tabBarGutter={12}
+                            tabBarGutter={24}
                             items={data.map((_, i) => {
                                 const id = String(i);
                                 return {
