@@ -13,11 +13,20 @@ import {
     Avatar,
     Radio,
     Tooltip,
+    message,
 } from "antd";
 
-import { SearchOutlined, CaretRightOutlined } from "@ant-design/icons";
+import {
+    SearchOutlined,
+    CaretRightOutlined,
+    CopyOutlined,
+    EditOutlined,
+    ForwardOutlined,
+} from "@ant-design/icons";
 
-const ClickableCard = ({ icon, title, description, url }) => {
+import copy from "copy-to-clipboard";
+
+const ClickableCardBack = ({ icon, title, description, url }) => {
     return (
         <>
             <Tooltip
@@ -55,13 +64,92 @@ const ClickableCard = ({ icon, title, description, url }) => {
                                 X
                             </Avatar>
                         )}
-                        <div className="ml-1 truncate flex-1">
+                        <div className="ml-2 truncate flex-1">
                             <p className="truncate ">{title}</p>
                             <p className="truncate ">{description}</p>
                         </div>
                     </Card>
                 </a>
             </Tooltip>
+        </>
+    );
+};
+
+const ClickableCard = ({ icon, title, description, url }) => {
+    const [messageApi, contextHolder] = message.useMessage();
+
+    return (
+        <>
+            {contextHolder}
+
+            <Card
+                hoverable
+                bodyStyle={{
+                    padding: "12px 8px",
+                    display: "flex",
+                    alignItems: "center",
+                }}
+                actions={[
+                    <Tooltip
+                        key="copy"
+                        placement="top"
+                        title={"复制 " + url}
+                    >
+                        <CopyOutlined onClick={() => copy(url)} />
+                    </Tooltip>,
+
+                    <Tooltip
+                        placement="top"
+                        key="open"
+                        title={"打开"}
+                    >
+                        <a
+                            href={url}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <ForwardOutlined />
+                        </a>
+                    </Tooltip>,
+                ]}
+            >
+                {icon ? (
+                    <Avatar
+                        style={{
+                            verticalAlign: "middle",
+                        }}
+                        size="large"
+                        src={icon}
+                    />
+                ) : (
+                    <Avatar
+                        style={{
+                            verticalAlign: "middle",
+                        }}
+                        size="large"
+                    >
+                        X
+                    </Avatar>
+                )}
+                <Tooltip
+                    placement="top"
+                    title={description}
+                >
+                    <div
+                        className="ml-4 truncate   flex-1"
+                        onClick={() => {
+                            copy(title);
+                            messageApi.open({
+                                type: "success",
+                                content: `复制成功, ${title}`,
+                            });
+                        }}
+                    >
+                        <p className="truncate mb-3 font-bold text-base">{title}</p>
+                        <p className=" truncate ">{description}</p>
+                    </div>
+                </Tooltip>
+            </Card>
         </>
     );
 };
