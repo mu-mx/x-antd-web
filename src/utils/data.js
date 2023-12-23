@@ -61,3 +61,21 @@ export const getDataBase = async () => {
 
     return mapToTree(categoryData);
 };
+
+export const getDataByName = async (title) => {
+    const websiteData = await get(websitePath);
+
+    const backData = websiteData;
+
+    if (!title) {
+        return backData;
+    }
+
+    return backData.filter((item) => {
+        return (
+            item.title.toLowerCase().includes(title.toLowerCase()) ||
+            item.description.toLowerCase().includes(title.toLowerCase()) ||
+            item.url.toLowerCase().includes(title.toLowerCase())
+        );
+    });
+};
