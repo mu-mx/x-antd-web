@@ -15,7 +15,7 @@ export default defineConfig({
                 },
                 {
                     name: "react-dom",
-                    var: "ReactDom",
+                    var: "ReactDOM",
                     path: "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.production.min.js",
                 },
                 {
