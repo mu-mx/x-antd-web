@@ -16,7 +16,7 @@ import {
     message,
 } from "antd";
 
-import {
+import Icon, {
     SearchOutlined,
     CaretRightOutlined,
     CopyOutlined,

@@ -15,7 +15,8 @@
     "copy-to-clipboard": "^3.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-sticky-box": "^2.0.5"
+    "react-sticky-box": "^2.0.5",
+    "vite-plugin-cdn-import": "^0.3.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
