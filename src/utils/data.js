@@ -38,7 +38,7 @@ console.log("mode - >:", mode);
 const basePath =
     import.meta.env.MODE == "development"
         ? "/api/data"
-        : `https://gh.api.99988866.xyz/https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
+        : `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
 
 // https://gh.api.99988866.xyz/
 
