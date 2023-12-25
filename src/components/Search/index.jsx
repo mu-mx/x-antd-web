@@ -46,7 +46,7 @@ export default function Index() {
                 value={value}
                 size="large"
                 style={{
-                    margin: "60px auto 80px",
+                    margin: "60px auto 40px",
                     width: "40%",
                     display: "block",
                 }}
