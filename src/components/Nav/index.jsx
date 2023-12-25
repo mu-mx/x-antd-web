@@ -60,15 +60,17 @@ export default function Index() {
                     offset={2}
                 >
                     <Card
-                        title="dao hang"
+                        title=""
                         className="daohang-body h-full"
                         bodyStyle={{
                             padding: "0 12px 8px",
                             overflowY: "auto",
-                            height: "680px",
+                            height: "900px",
                         }}
                         headStyle={{
-                            padding: "8px 12px",
+                            // padding: "8px 12px",
+                            padding: "0",
+                            minHeight: "0",
                         }}
                         extra={
                             <Radio.Group
