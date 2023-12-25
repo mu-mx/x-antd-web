@@ -38,12 +38,12 @@ console.log("mode - >:", mode);
 const basePath =
     import.meta.env.MODE == "development"
         ? "/api/data"
-        : `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
+        : `https://gh.api.99988866.xyz/https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
 
 // https://gh.api.99988866.xyz/
 
-const categoryPath = `https://gh.api.99988866.xyz/${basePath}/category.json`;
-const websitePath = `https://gh.api.99988866.xyz/${basePath}/website.json`;
+const categoryPath = `${basePath}/category.json`;
+const websitePath = `${basePath}/website.json`;
 
 export const getDataBase = async () => {
     const categoryData = await get(categoryPath);
