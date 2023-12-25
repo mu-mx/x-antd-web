@@ -35,18 +35,15 @@ const mapToTree = (data) => {
 const mode = import.meta.env.MODE;
 console.log("mode - >:", mode);
 
-// `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
-
-// 加速
-// `https://raw.staticdn.net/mu-mx/site-database/main/data`
-
 const basePath =
     import.meta.env.MODE == "development"
         ? "/api/data"
-        : `https://raw.fgit.cf/mu-mx/site-database/main/data`;
+        : `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
 
-const categoryPath = `${basePath}/category.json`;
-const websitePath = `${basePath}/website.json`;
+// https://gh.api.99988866.xyz/
+
+const categoryPath = `https://gh.api.99988866.xyz/${basePath}/category.json`;
+const websitePath = `https://gh.api.99988866.xyz/${basePath}/website.json`;
 
 export const getDataBase = async () => {
     const categoryData = await get(categoryPath);
