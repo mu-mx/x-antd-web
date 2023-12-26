@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     Button,
     Col,
@@ -25,6 +25,8 @@ export default function Index() {
 
     const [data, setData] = useState([]);
 
+    const renderNextTime = useRef(true);
+
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -48,8 +50,34 @@ export default function Index() {
         setData(data);
     };
 
+    const mouseEvent = new MouseEvent("click", {
+        //创建一个 click 的鼠标事件 并让他点击
+        bubbles: true,
+        cancelable: true,
+    });
+
+    const tabHover = () => {
+        var els = document.querySelectorAll(".ant-tabs-tab");
+        var top = document.querySelectorAll(".ant-tabs-tab-btn");
+        for (let i = 0; i < top.length; i++) {
+            top[i].addEventListener("mouseover", function () {
+                //给某个 dom 在=绑定 mouseover 事件
+                els[i].dispatchEvent(mouseEvent); // 在 mouseover 中将想要进行的 click 通过 dispatchEvent 事件派发给将要发生 click 的 div
+            });
+        }
+    };
+
+    useEffect(() => {
+        if (renderNextTime.current) {
+            renderNextTime.current = false;
+        } else {
+            tabHover();
+        }
+    });
+
     useEffect(() => {
         getList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
