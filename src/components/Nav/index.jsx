@@ -93,49 +93,48 @@ export default function Index() {
                         bodyStyle={{
                             padding: "0 12px 8px",
                             overflowY: "auto",
-                            height: "900px",
+                            height: "700px",
                         }}
                         headStyle={{
                             // padding: "8px 12px",
                             padding: "0",
                             minHeight: "0",
                         }}
-                        extra={
-                            <Radio.Group
-                                optionType="button"
-                                options={[
-                                    {
-                                        label: "左",
-                                        value: "left",
-                                    },
-                                    {
-                                        label: "右",
-                                        value: "right",
-                                    },
-                                    {
-                                        label: "上",
-                                        value: "top",
-                                    },
-                                    {
-                                        label: "下",
-                                        value: "bottom",
-                                    },
-                                ]}
-                                onChange={({ target: { value } }) => {
-                                    setMode(value);
-                                }}
-                                value={mode}
-                            />
-                        }
+                        // extra={
+                        //     <Radio.Group
+                        //         optionType="button"
+                        //         options={[
+                        //             {
+                        //                 label: "左",
+                        //                 value: "left",
+                        //             },
+                        //             {
+                        //                 label: "右",
+                        //                 value: "right",
+                        //             },
+                        //             {
+                        //                 label: "上",
+                        //                 value: "top",
+                        //             },
+                        //             {
+                        //                 label: "下",
+                        //                 value: "bottom",
+                        //             },
+                        //         ]}
+                        //         onChange={({ target: { value } }) => {
+                        //             setMode(value);
+                        //         }}
+                        //         value={mode}
+                        //     />
+                        // }
                     >
                         <Tabs
                             defaultActiveKey="0"
                             indicatorSize={30}
-                            renderTabBar={mode === "top" ? renderTabBar : undefined}
-                            centered={mode === "bottom"}
+                            renderTabBar={renderTabBar}
                             tabPosition={mode}
-                            destroyInactiveTabPane={true}
                             tabBarGutter={24}
+                            animated={false}
                             items={data.map((_, i) => {
                                 const id = String(i);
                                 return {
@@ -148,8 +147,8 @@ export default function Index() {
                     </Card>
                     <FloatButton.BackTop
                         style={{
-                            right: "12%",
-                            bottom: "35%",
+                            right: "10%",
+                            bottom: "20%",
                         }}
                         visibilityHeight={0}
                         target={() => document.querySelector(".daohang-body .ant-card-body")}

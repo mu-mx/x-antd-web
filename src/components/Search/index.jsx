@@ -33,8 +33,19 @@ export default function Index() {
         });
     };
 
+    const onKeyDown = (e) => {
+        e.keyCode = e.keyCode || e.which;
+        console.log("e.keyCode - >:", e.keyCode);
+    };
+
     useEffect(() => {
         getList();
+
+        window.addEventListener("keydown", onKeyDown); // 添加全局事件
+
+        return () => {
+            window.removeEventListener("keydown", onKeyDown); // 销毁
+        };
     }, []);
 
     return (
@@ -46,7 +57,7 @@ export default function Index() {
                 value={value}
                 size="large"
                 style={{
-                    margin: "60px auto 40px",
+                    margin: "20px auto",
                     width: "40%",
                     display: "block",
                 }}
@@ -59,6 +70,8 @@ export default function Index() {
                         // } else {
                         // }
                         window.open(option.url, "_blank");
+                    } else {
+                        getList();
                     }
                 }}
                 defaultActiveFirstOption={false}
