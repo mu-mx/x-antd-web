@@ -133,6 +133,7 @@ export default function Index() {
                             indicatorSize={30}
                             renderTabBar={renderTabBar}
                             tabPosition={mode}
+                            destroyInactiveTabPane={true}
                             tabBarGutter={24}
                             animated={false}
                             items={data.map((_, i) => {
