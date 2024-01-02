@@ -181,6 +181,7 @@ const getItems = (panelStyle, data) => {
     }));
 };
 
+// eslint-disable-next-line react/prop-types
 function CardItem({ data }) {
     const { token } = theme.useToken();
 
@@ -191,11 +192,15 @@ function CardItem({ data }) {
         border: "none",
     };
 
-    const defaultAllKey = new Array(30).fill(0).map((it, ind) => ind);
+    const defaultAllKey = new Array(10).fill(0).map((it, ind) => ind);
 
     return (
         <Collapse
-            bordered={false}
+            collapsible="icon"
+            size="large"
+            expandIconPosition="end"
+            ghost={true}
+            bordered={true}
             defaultActiveKey={defaultAllKey}
             expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
             style={{

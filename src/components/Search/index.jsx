@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
     Button,
@@ -19,7 +19,8 @@ import { getDataByName } from "../../utils/data";
 
 export default function Index() {
     const [data, setData] = useState([]);
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(undefined);
+    const select = useRef(null);
 
     const handleSearch = (newValue) => {
         getDataByName(newValue).then((res) => {
@@ -34,8 +35,14 @@ export default function Index() {
     };
 
     const onKeyDown = (e) => {
-        e.keyCode = e.keyCode || e.which;
-        console.log("e.keyCode - >:", e.keyCode);
+        if (e.keyCode === 191) {
+            // e.stopPropagation();
+            e.preventDefault();
+            select.current.focus();
+
+            // select.current.value = "";
+            // setValue(undefined);
+        }
     };
 
     useEffect(() => {
@@ -46,11 +53,13 @@ export default function Index() {
         return () => {
             window.removeEventListener("keydown", onKeyDown); // 销毁
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
             <Select
+                ref={select}
                 showSearch
                 allowClear
                 placeholder="请输入"
@@ -81,7 +90,7 @@ export default function Index() {
                 options={(data || []).map((d) => ({
                     ...d,
                     value: d.id,
-                    label: `${d.pTitle} ==> ${d.title}`,
+                    label: `${d.pTitle} --> ${d.title}`,
                 }))}
                 optionRender={(option) => (
                     <Tooltip

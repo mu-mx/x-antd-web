@@ -46,7 +46,6 @@ export default function Index() {
 
     const getList = async () => {
         const data = await getDataBase();
-        console.log("data - >:", data);
         setData(data);
     };
 
@@ -132,6 +131,7 @@ export default function Index() {
                             defaultActiveKey="0"
                             indicatorSize={30}
                             renderTabBar={renderTabBar}
+                            centered
                             tabPosition={mode}
                             destroyInactiveTabPane={true}
                             tabBarGutter={24}

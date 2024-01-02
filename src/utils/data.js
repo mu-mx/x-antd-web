@@ -75,6 +75,7 @@ export const getDataByName = async (title) => {
 
     return backData.filter((item) => {
         return (
+            item.pTitle.toLowerCase().includes(title.toLowerCase()) ||
             item.title.toLowerCase().includes(title.toLowerCase()) ||
             item.description.toLowerCase().includes(title.toLowerCase()) ||
             item.url.toLowerCase().includes(title.toLowerCase())
