@@ -35,12 +35,12 @@ const mapToTree = (data) => {
 const mode = import.meta.env.MODE;
 console.log("mode - >:", mode);
 
-const basePath =
-    import.meta.env.MODE == "development"
-        ? "/api/data"
-        : `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
+// const basePath =
+//     import.meta.env.MODE == "development"
+//         ? "/api/data"
+//         : `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
 
-// https://gh.api.99988866.xyz/
+const basePath = `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
 
 const categoryPath = `${basePath}/category.json`;
 const websitePath = `${basePath}/website.json`;

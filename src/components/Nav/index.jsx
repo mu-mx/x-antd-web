@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react";
 import {
     Button,
@@ -66,13 +67,13 @@ export default function Index() {
         }
     };
 
-    useEffect(() => {
-        if (renderNextTime.current) {
-            renderNextTime.current = false;
-        } else {
-            tabHover();
-        }
-    });
+    // useEffect(() => {
+    //     if (renderNextTime.current) {
+    //         renderNextTime.current = false;
+    //     } else {
+    //         tabHover();
+    //     }
+    // });
 
     useEffect(() => {
         getList();
@@ -92,7 +93,7 @@ export default function Index() {
                         bodyStyle={{
                             padding: "0 12px 8px",
                             overflowY: "auto",
-                            height: "700px",
+                            height: "860px",
                         }}
                         headStyle={{
                             // padding: "8px 12px",
@@ -132,6 +133,7 @@ export default function Index() {
                             indicatorSize={30}
                             renderTabBar={renderTabBar}
                             centered
+                            size={'large'}
                             tabPosition={mode}
                             destroyInactiveTabPane={true}
                             tabBarGutter={24}
@@ -139,7 +141,7 @@ export default function Index() {
                             items={data.map((_, i) => {
                                 const id = String(i);
                                 return {
-                                    label: `${_.title}`,
+                                    label: <Tooltip title={_.description}>{_.title}</Tooltip>,
                                     key: id,
                                     children: <CardItem data={_.children || []} />,
                                 };
