@@ -32,22 +32,36 @@ const mapToTree = (data) => {
     return res;
 };
 
-const mode = import.meta.env.MODE;
-console.log("mode - >:", mode);
+export const fetchData = async () => {
+    try {
+        const basePath = `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
 
-// const basePath =
-//     import.meta.env.MODE == "development"
-//         ? "/api/data"
-//         : `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
+        const categoryPath = `${basePath}/category.json`;
+        const websitePath = `${basePath}/website.json`;
 
-const basePath = `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
+        const categoryData = await get(categoryPath);
+        const websiteData = await get(websitePath);
 
-const categoryPath = `${basePath}/category.json`;
-const websitePath = `${basePath}/website.json`;
+        localStorage.setItem("cate", JSON.stringify(categoryData));
+        localStorage.setItem("site", JSON.stringify(websiteData));
+    } catch (err) {
+        console.log("err - >:", err);
+    }
+};
+
+const getFinalData = () => {
+    if (!localStorage.getItem("cate")) {
+        fetchData();
+    }
+
+    return {
+        categoryData: JSON.parse(localStorage.getItem("cate") || "[]"),
+        websiteData: JSON.parse(localStorage.getItem("site") || "[]"),
+    };
+};
 
 export const getDataBase = async () => {
-    const categoryData = await get(categoryPath);
-    const websiteData = await get(websitePath);
+    const { categoryData, websiteData } = await getFinalData();
 
     const categoryMap = {};
     categoryData.forEach((item) => {
@@ -65,7 +79,7 @@ export const getDataBase = async () => {
 };
 
 export const getDataByName = async (title) => {
-    const websiteData = await get(websitePath);
+    const websiteData = JSON.parse(localStorage.getItem("site") || "[]");
 
     const backData = websiteData;
 
