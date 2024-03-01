@@ -14,6 +14,7 @@ import {
     Radio,
     Tooltip,
     FloatButton,
+    Anchor,
 } from "antd";
 
 import StickyBox from "react-sticky-box";
@@ -83,52 +84,34 @@ export default function Index() {
     return (
         <>
             <Row>
-                <Col
-                    span={20}
-                    offset={2}
-                >
+                <Col span={3}>
+                    <Anchor
+                        affix={false}
+                        targetOffset={32}
+                        getContainer={() => document.querySelector("#bigWrap .ant-card-body")}
+                        items={data.map((item, index) => ({
+                            key: index + 1,
+                            href: "#nav" + index,
+                            title: item.title,
+                        }))}
+                    />
+                </Col>
+
+                <Col span={20}>
                     <Card
+                        id="bigWrap"
                         title=""
                         className="daohang-body h-full"
-                        bodyStyle={{
-                            padding: "0 12px 8px",
-                            overflowY: "auto",
-                            height: "860px",
+                        styles={{
+                            header: {
+                                // padding: "8px 12px",
+                                padding: "0",
+                                minHeight: "0",
+                            },
+                            body: { padding: "12px 8px", overflowY: "auto", height: "860px" },
                         }}
-                        headStyle={{
-                            // padding: "8px 12px",
-                            padding: "0",
-                            minHeight: "0",
-                        }}
-                        // extra={
-                        //     <Radio.Group
-                        //         optionType="button"
-                        //         options={[
-                        //             {
-                        //                 label: "左",
-                        //                 value: "left",
-                        //             },
-                        //             {
-                        //                 label: "右",
-                        //                 value: "right",
-                        //             },
-                        //             {
-                        //                 label: "上",
-                        //                 value: "top",
-                        //             },
-                        //             {
-                        //                 label: "下",
-                        //                 value: "bottom",
-                        //             },
-                        //         ]}
-                        //         onChange={({ target: { value } }) => {
-                        //             setMode(value);
-                        //         }}
-                        //         value={mode}
-                        //     />
-                        // }
                     >
-                        <Tabs
+                        {/* <Tabs
                             defaultActiveKey="0"
                             indicatorSize={30}
                             renderTabBar={renderTabBar}
@@ -146,11 +129,21 @@ export default function Index() {
                                     children: <CardItem data={_.children || []} />,
                                 };
                             })}
-                        />
+                        /> */}
+
+                        {data.map((_, i) => (
+                            <div
+                                id={"nav" + i}
+                                key={i}
+                                style={{ minHeight: "60vh" }}
+                            >
+                                <CardItem data={_.children || []} />
+                            </div>
+                        ))}
                     </Card>
                     <FloatButton.BackTop
                         style={{
-                            right: "10%",
+                            left: "8%",
                             bottom: "20%",
                         }}
                         visibilityHeight={0}

@@ -250,7 +250,22 @@ function CardItem({ data }) {
     });
 
     return (
-        <Tabs
+        <>
+            {getItems(panelStyle, data).map((it, ind) => (
+                <Card
+                    title={it.label}
+                    bordered
+                    key={ind}
+                    style={{
+                        marginTop: "16px",
+                    }}
+                >
+                    {it.children}
+                </Card>
+            ))}
+
+            {/* 
+            <Tabs
             className="two-tabs"
             defaultActiveKey="0"
             indicatorSize={30}
@@ -261,21 +276,23 @@ function CardItem({ data }) {
             tabBarGutter={24}
             animated={false}
             items={getItems(panelStyle, data)}
-        />
+            /> */}
 
-        // <Collapse
-        //     collapsible="icon"
-        //     size="large"
-        //     expandIconPosition="end"
-        //     ghost={true}
-        //     bordered={true}
-        //     defaultActiveKey={defaultAllKey}
-        //     expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-        //     style={{
-        //         background: token.colorBgContainer,
-        //     }}
-        //     items={getItems(panelStyle, data)}
-        // />
+            {/*  
+            <Collapse
+             collapsible="icon"
+             size="large"
+             expandIconPosition="end"
+             ghost={true}
+             bordered={true}
+             defaultActiveKey={defaultAllKey}
+             expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+             style={{
+                 background: token.colorBgContainer,
+             }}
+             items={getItems(panelStyle, data)}
+            /> */}
+        </>
     );
 }
 
