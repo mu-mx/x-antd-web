@@ -63,19 +63,11 @@ const getFinalData = () => {
 export const getDataBase = async () => {
     const { categoryData, websiteData } = await getFinalData();
 
-    const categoryMap = {};
     categoryData.forEach((item) => {
-        item.children = [];
-        categoryMap[item.id] = item;
+        item.childrens = item.childrens.map((it) => websiteData.find((item) => it === item.id));
     });
 
-    websiteData.forEach((item) => {
-        if (categoryMap[item.pId]) {
-            categoryMap[item.pId].children.push(item);
-        }
-    });
-
-    return mapToTree(categoryData);
+    return categoryData;
 };
 
 export const getDataByName = async (title) => {
@@ -89,7 +81,6 @@ export const getDataByName = async (title) => {
 
     return backData.filter((item) => {
         return (
-            item.pTitle.toLowerCase().includes(title.toLowerCase()) ||
             item.title.toLowerCase().includes(title.toLowerCase()) ||
             item.description.toLowerCase().includes(title.toLowerCase()) ||
             item.url.toLowerCase().includes(title.toLowerCase())

@@ -90,7 +90,7 @@ export default function Index() {
                 options={(data || []).map((d) => ({
                     ...d,
                     value: d.id,
-                    label: `${d.pTitle} --> ${d.title}`,
+                    label: `${d.title}`,
                 }))}
                 optionRender={(option) => (
                     <Tooltip

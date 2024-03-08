@@ -48,6 +48,7 @@ export default function Index() {
 
     const getList = async () => {
         const data = await getDataBase();
+        console.log('data - >:', data)
         setData(data);
     };
 
@@ -87,6 +88,7 @@ export default function Index() {
                 <Col span={3}>
                     <Anchor
                         affix={false}
+                        style={{ maxHeight: "60vh", overflowY: "auto" }}
                         targetOffset={32}
                         getContainer={() => document.querySelector("#bigWrap .ant-card-body")}
                         items={data.map((item, index) => ({
@@ -135,9 +137,9 @@ export default function Index() {
                             <div
                                 id={"nav" + i}
                                 key={i}
-                                style={{ minHeight: "60vh" }}
+                                style={{ minHeight: "30vh" }}
                             >
-                                <CardItem data={_.children || []} />
+                                <CardItem data={_} />
                             </div>
                         ))}
                     </Card>

@@ -55,6 +55,7 @@ export default defineConfig({
     },
 
     server: {
+        port: 3001,
         //主要是加上这段代码
         proxy: {
             "/api": {
