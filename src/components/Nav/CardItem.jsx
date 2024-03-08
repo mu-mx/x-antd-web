@@ -181,26 +181,23 @@ const ClickableCard = ({ icon, title, description, url }) => {
 };
 
 const getItems = (panelStyle, data) => {
-    console.log("data - >:", data);
     return data.map((it, key) => ({
         key,
         label: <Tooltip title={it.description}>{it.title}</Tooltip>,
         children: (
             <>
                 <Row gutter={[10, 16]}>
-                    {it.children.map((it, index) => (
-                        <Col
-                            xs={24}
-                            sm={24}
-                            md={12}
-                            lg={8}
-                            xl={6}
-                            xxl={4}
-                            key={index}
-                        >
-                            <ClickableCard {...it} />
-                        </Col>
-                    ))}
+                    <Col
+                        xs={24}
+                        sm={24}
+                        md={12}
+                        lg={8}
+                        xl={6}
+                        xxl={4}
+                        key={key}
+                    >
+                        <ClickableCard {...it} />
+                    </Col>
                 </Row>
             </>
         ),
@@ -251,18 +248,29 @@ function CardItem({ data }) {
 
     return (
         <>
-            {getItems(panelStyle, data).map((it, ind) => (
-                <Card
-                    title={it.label}
-                    bordered
-                    key={ind}
-                    style={{
-                        marginTop: "16px",
-                    }}
-                >
-                    {it.children}
-                </Card>
-            ))}
+            <Card
+                title={data.title}
+                bordered
+                style={{
+                    marginTop: "16px",
+                }}
+            >
+                <Row gutter={[10, 16]}>
+                    {data.childrens.map((it, ind) => (
+                        <Col
+                            xs={24}
+                            sm={24}
+                            md={12}
+                            lg={8}
+                            xl={6}
+                            xxl={4}
+                            key={ind}
+                        >
+                            <ClickableCard {...it} />
+                        </Col>
+                    ))}
+                </Row>
+            </Card>
 
             {/* 
             <Tabs
