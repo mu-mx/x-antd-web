@@ -5,18 +5,18 @@ import { Plugin as importToCDN } from "vite-plugin-cdn-import";
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
-        react(),
+        react({}),
         importToCDN({
             modules: [
                 {
                     name: "react",
                     var: "React",
-                    path: "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/18.2.0/umd/react.production.min.js",
+                    path: "https://cdn.bootcdn.net/ajax/libs/react/18.2.0/umd/react.production.min.js",
                 },
                 {
                     name: "react-dom",
                     var: "ReactDOM",
-                    path: "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.production.min.js",
+                    path: "https://cdn.bootcdn.net/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js",
                 },
                 {
                     name: "dayjs",

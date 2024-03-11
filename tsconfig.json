@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
-        "jsx": "react",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "jsx": "preserve",
         "target": "ES5", // 指定要使用的默认库，值为"es3","es5","es2015"...
-        "module": "commonjs", // 在生成模块代码时指定模块系统
+        "module": "esnext", // 在生成模块代码时指定模块系统
         "checkJs": true, // 启用javascript文件的类型检查
         "allowJs": true,
         "baseUrl": "./", // 解析非相关模块名称的基础目录
@@ -18,7 +19,6 @@
     ],
     "include": [
         // 包含的文件
-        "src/*.js",
-        "src/*.jsx"
+        "src"
     ]
 }
