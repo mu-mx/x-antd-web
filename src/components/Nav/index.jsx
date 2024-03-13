@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from "react";
 import {
@@ -18,6 +19,7 @@ import {
 } from "antd";
 
 import StickyBox from "react-sticky-box";
+import { RedoOutlined } from "@ant-design/icons";
 
 import CardItem from "./CardItem";
 import { getDataBase } from "@/utils/data";
@@ -48,7 +50,7 @@ export default function Index() {
 
     const getList = async () => {
         const data = await getDataBase();
-        console.log('data - >:', data)
+        console.log("data - >:", data);
         setData(data);
     };
 
@@ -143,16 +145,34 @@ export default function Index() {
                             </div>
                         ))}
                     </Card>
-                    <FloatButton.BackTop
-                        style={{
-                            left: "8%",
-                            bottom: "20%",
-                        }}
-                        visibilityHeight={0}
-                        target={() => document.querySelector(".daohang-body .ant-card-body")}
-                    />
                 </Col>
             </Row>
+
+            <FloatButton.BackTop
+                style={{
+                    left: "8%",
+                    bottom: "20%",
+                }}
+                visibilityHeight={0}
+                target={() => document.querySelector(".daohang-body .ant-card-body")}
+            />
+
+            <FloatButton
+                style={{
+                    left: "8%",
+                    bottom: "16%",
+                }}
+                icon={
+                    <Tooltip title="刷新数据">
+                        <RedoOutlined />
+                    </Tooltip>
+                }
+                onClick={() => {
+                    localStorage.clear();
+                    getDataBase();
+                    window.location.reload();
+                }}
+            />
         </>
     );
 }
