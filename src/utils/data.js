@@ -39,22 +39,20 @@ export const fetchData = async () => {
         const categoryPath = `${basePath}/category.json`;
         const websitePath = `${basePath}/website.json`;
 
-        const categoryData = await get(categoryPath);
-        const websiteData = await get(websitePath);
-
-        localStorage.setItem("cate", JSON.stringify(categoryData));
-        localStorage.setItem("site", JSON.stringify(websiteData));
+        await Promise.all([get(categoryPath), get(websitePath)]).then(
+            ([categoryData, websiteData]) => {
+                localStorage.setItem("cate", JSON.stringify(categoryData));
+                localStorage.setItem("site", JSON.stringify(websiteData));
+            }
+        );
     } catch (err) {
         console.log("err - >:", err);
     }
 };
 
-const getFinalData = () => {
-    if (!localStorage.getItem("cate")) {
-        fetchData();
-    }
-    if (!localStorage.getItem("site")) {
-        fetchData();
+const getFinalData = async () => {
+    if (!localStorage.getItem("cate") || !localStorage.getItem("site")) {
+        await fetchData();
     }
 
     return {
