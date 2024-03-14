@@ -87,12 +87,15 @@ export default function Index() {
     return (
         <>
             <Row>
-                <Col span={3}>
+                <Col
+                    span={4}
+                    offset={2}
+                >
                     <Anchor
                         affix={false}
                         style={{ maxHeight: "60vh", overflowY: "auto" }}
                         targetOffset={32}
-                        getContainer={() => document.querySelector("#bigWrap .ant-card-body")}
+                        getContainer={() => document.querySelector("#bigWrap")}
                         items={data.map((item, index) => ({
                             key: index + 1,
                             href: "#nav" + index,
@@ -101,8 +104,22 @@ export default function Index() {
                     />
                 </Col>
 
-                <Col span={20}>
-                    <Card
+                <Col
+                    span={14}
+                    id="bigWrap"
+                    style={{ overflowY: "auto", height: "860px" }}
+                >
+                    {data.map((_, i) => (
+                        <div
+                            id={"nav" + i}
+                            key={i}
+                            style={{ minHeight: "30vh" }}
+                        >
+                            <CardItem data={_} />
+                        </div>
+                    ))}
+
+                    {/* <Card
                         id="bigWrap"
                         title=""
                         className="daohang-body h-full"
@@ -115,25 +132,7 @@ export default function Index() {
                             body: { padding: "12px 8px", overflowY: "auto", height: "860px" },
                         }}
                     >
-                        {/* <Tabs
-                            defaultActiveKey="0"
-                            indicatorSize={30}
-                            renderTabBar={renderTabBar}
-                            centered
-                            size={'large'}
-                            tabPosition={mode}
-                            destroyInactiveTabPane={true}
-                            tabBarGutter={24}
-                            animated={false}
-                            items={data.map((_, i) => {
-                                const id = String(i);
-                                return {
-                                    label: <Tooltip title={_.description}>{_.title}</Tooltip>,
-                                    key: id,
-                                    children: <CardItem data={_.children || []} />,
-                                };
-                            })}
-                        /> */}
+                       
 
                         {data.map((_, i) => (
                             <div
@@ -144,23 +143,22 @@ export default function Index() {
                                 <CardItem data={_} />
                             </div>
                         ))}
-                    </Card>
+                    </Card> */}
                 </Col>
             </Row>
 
             <FloatButton.BackTop
                 style={{
-                    left: "8%",
+                    left: "16%",
                     bottom: "20%",
                 }}
-                visibilityHeight={0}
-                target={() => document.querySelector(".daohang-body .ant-card-body")}
+                target={() => document.querySelector("#bigWrap")}
             />
 
             <FloatButton
                 style={{
-                    left: "8%",
-                    bottom: "16%",
+                    left: "16%",
+                    bottom: "14%",
                 }}
                 icon={
                     <Tooltip title="刷新数据">

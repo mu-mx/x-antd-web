@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
@@ -16,6 +17,7 @@ import {
     Radio,
     Tooltip,
     message,
+    List,
 } from "antd";
 
 import Icon, {
@@ -248,7 +250,7 @@ function CardItem({ data }) {
 
     return (
         <>
-            <Card
+            {/* <Card
                 title={data.title}
                 bordered
                 style={{
@@ -270,36 +272,62 @@ function CardItem({ data }) {
                         </Col>
                     ))}
                 </Row>
+            </Card> */}
+
+            <Card
+                title={data.title}
+                style={{
+                    marginTop: "16px",
+                }}
+            >
+                <List
+                    itemLayout="horizontal"
+                    bordered
+                    size="small"
+                    dataSource={data.childrens}
+                    renderItem={(item, index) => (
+                        <List.Item
+                            actions={[
+                                <Tooltip
+                                    key="copy"
+                                    placement="top"
+                                    title={"复制 " + item.url}
+                                >
+                                    <CopyOutlined onClick={() => copy(item.url)} />
+                                </Tooltip>,
+
+                                <Tooltip
+                                    placement="top"
+                                    key="open"
+                                    title={`打开 ${item.url}`}
+                                >
+                                    <a
+                                        href={item.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <ForwardOutlined />
+                                    </a>
+                                </Tooltip>,
+                            ]}
+                        >
+                            <Tooltip
+                                placement="top"
+                                key="openItem"
+                                title={`${item.description}`}
+                            >
+                                <List.Item.Meta
+                                    avatar={
+                                        <Avatar src={item.icon ? item.icon : <DefaultIcon />} />
+                                    }
+                                    title={<a>{item.title}</a>}
+                                    description={<a>{item.description}</a>}
+                                />
+                            </Tooltip>
+                        </List.Item>
+                    )}
+                />
             </Card>
-
-            {/* 
-            <Tabs
-            className="two-tabs"
-            defaultActiveKey="0"
-            indicatorSize={30}
-            size={"small"}
-            centered
-            tabPosition={"top"}
-            destroyInactiveTabPane={true}
-            tabBarGutter={24}
-            animated={false}
-            items={getItems(panelStyle, data)}
-            /> */}
-
-            {/*  
-            <Collapse
-             collapsible="icon"
-             size="large"
-             expandIconPosition="end"
-             ghost={true}
-             bordered={true}
-             defaultActiveKey={defaultAllKey}
-             expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-             style={{
-                 background: token.colorBgContainer,
-             }}
-             items={getItems(panelStyle, data)}
-            /> */}
         </>
     );
 }

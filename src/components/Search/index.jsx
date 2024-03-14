@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 
 import {
@@ -97,7 +99,7 @@ export default function Index() {
                         placement="top"
                         title={option.data.description}
                     >
-                        {option.data.label}
+                        <div>{option.data.label}</div>
                     </Tooltip>
                 )}
             />
