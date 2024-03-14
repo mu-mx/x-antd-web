@@ -53,6 +53,9 @@ const getFinalData = () => {
     if (!localStorage.getItem("cate")) {
         fetchData();
     }
+    if (!localStorage.getItem("site")) {
+        fetchData();
+    }
 
     return {
         categoryData: JSON.parse(localStorage.getItem("cate") || "[]"),

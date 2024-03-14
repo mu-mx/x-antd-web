@@ -22,7 +22,7 @@ import StickyBox from "react-sticky-box";
 import { RedoOutlined } from "@ant-design/icons";
 
 import CardItem from "./CardItem";
-import { getDataBase } from "@/utils/data";
+import { getDataBase, fetchData } from "@/utils/data";
 
 export default function Index() {
     const [mode, setMode] = React.useState("top");
@@ -165,10 +165,12 @@ export default function Index() {
                         <RedoOutlined />
                     </Tooltip>
                 }
-                onClick={() => {
+                onClick={async () => {
                     localStorage.clear();
-                    getDataBase();
-                    window.location.reload();
+                    
+                    fetchData().then(() => {
+                        window.location.reload();
+                    });
                 }}
             />
         </>
