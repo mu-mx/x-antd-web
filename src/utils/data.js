@@ -34,7 +34,7 @@ const mapToTree = (data) => {
 
 export const fetchData = async () => {
     try {
-        const basePath = `https://raw.githubusercontent.com/mu-mx/site-database/main/data`;
+        const basePath = `https://raw.githubusercontent.com/mu-mx/site-database/main`;
 
         const categoryPath = `${basePath}/category.json`;
         const websitePath = `${basePath}/website.json`;
