@@ -22,7 +22,7 @@ import StickyBox from 'react-sticky-box';
 import { RedoOutlined } from '@ant-design/icons';
 
 import CardItem from './CardItem';
-import { getDataBase, fetchData } from '@/utils/data';
+import { fetchData, getDataBase } from '@/utils/data'
 
 export default function Index() {
   const [mode, setMode] = React.useState('top');
