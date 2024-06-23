@@ -42,11 +42,9 @@ export const fetchData = async () => {
 
     await Promise.all([get(categoryPath), get(websitePathReq)]).then(
       ([categoryData, websiteData]) => {
-        const cates = categoryData.map((it) => it.data);
-        localStorage.setItem('cate', JSON.stringify(cates));
+        localStorage.setItem('cate', JSON.stringify(categoryData));
 
-        const webs = websiteData.map((it) => it.data);
-        localStorage.setItem('site', JSON.stringify(webs));
+        localStorage.setItem('site', JSON.stringify(websiteData));
       },
     );
   } catch (err) {
@@ -58,10 +56,15 @@ const getFinalData = async () => {
   if (!localStorage.getItem('cate') || !localStorage.getItem('site')) {
     await fetchData();
   }
+  var categoryData = JSON.parse(localStorage.getItem('cate') || '[]');
+  const cates = categoryData.map((it) => it.data);
+
+  var websiteData = JSON.parse(localStorage.getItem('site') || '[]');
+  const webs = websiteData.map((it) => it.data);
 
   return {
-    categoryData: JSON.parse(localStorage.getItem('cate') || '[]'),
-    websiteData: JSON.parse(localStorage.getItem('site') || '[]'),
+    categoryData: cates,
+    websiteData: webs,
   };
 };
 
