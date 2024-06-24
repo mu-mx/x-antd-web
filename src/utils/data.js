@@ -81,7 +81,8 @@ export const getDataBase = async () => {
 };
 
 export const getDataByName = async (title) => {
-  const websiteData = JSON.parse(localStorage.getItem('site') || '[]');
+  const webs = JSON.parse(localStorage.getItem('site') || '[]');
+  const  websiteData = websiteData.map((it) => it.data);
 
   const backData = websiteData;
 
