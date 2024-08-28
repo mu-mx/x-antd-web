@@ -1,3 +1,5 @@
+import { search } from 'text-search-engine';
+
 export const get = (url, data) =>
   fetch(url, data)
     .then((response) => {
@@ -72,9 +74,7 @@ export const getDataBase = async () => {
   const { categoryData, websiteData } = await getFinalData();
 
   categoryData.forEach((item) => {
-    item.childrens = item.childrens.map((it) =>
-      websiteData.find((item) => it === item.id),
-    );
+    item.childrens = item.childrens.map((it) => websiteData.find((item) => it === item.id));
   });
 
   return categoryData;
@@ -82,7 +82,7 @@ export const getDataBase = async () => {
 
 export const getDataByName = async (title) => {
   const webs = JSON.parse(localStorage.getItem('site') || '[]');
-  const  websiteData = webs.map((it) => it.data);
+  const websiteData = webs.map((it) => it.data);
 
   const backData = websiteData;
 
@@ -91,10 +91,11 @@ export const getDataByName = async (title) => {
   }
 
   return backData.filter((item) => {
-    return (
-      item.title?.toLowerCase().includes(title.toLowerCase()) ||
-      item.description?.toLowerCase().includes(title.toLowerCase()) ||
-      item.url?.toLowerCase().includes(title.toLowerCase())
-    );
+    // return (
+    //   item.title?.toLowerCase().includes(title.toLowerCase()) ||
+    //   item.description?.toLowerCase().includes(title.toLowerCase()) ||
+    //   item.url?.toLowerCase().includes(title.toLowerCase())
+    // );
+    return search(item.title, title)?.length || search(item.description, title)?.length;
   });
 };
