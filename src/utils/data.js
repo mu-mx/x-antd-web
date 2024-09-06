@@ -1,3 +1,4 @@
+// @ts-ignore
 import { search } from 'text-search-engine';
 
 export const get = (url, data) =>
@@ -16,23 +17,6 @@ export const get = (url, data) =>
       console.log('error - >:', error);
       return [];
     });
-
-const mapToTree = (data) => {
-  const res = [];
-  const map = {};
-  data.forEach((item) => {
-    map[item.id] = item;
-  });
-  data.forEach((item) => {
-    const parent = map[item.pId];
-    if (parent) {
-      (parent.children || (parent.children = [])).push(item);
-    } else {
-      res.push(item);
-    }
-  });
-  return res;
-};
 
 export const fetchData = async () => {
   try {
@@ -59,10 +43,10 @@ const getFinalData = async () => {
     await fetchData();
   }
   var categoryData = JSON.parse(localStorage.getItem('cate') || '[]');
-  const cates = categoryData.map((it) => it.data);
+  const cates = categoryData;
 
   var websiteData = JSON.parse(localStorage.getItem('site') || '[]');
-  const webs = websiteData.map((it) => it.data);
+  const webs = websiteData;
 
   return {
     categoryData: cates,
@@ -74,7 +58,7 @@ export const getDataBase = async () => {
   const { categoryData, websiteData } = await getFinalData();
 
   categoryData.forEach((item) => {
-    item.childrens = item.childrens.map((it) => websiteData.find((item) => it === item.id));
+    item.childrens = item.childrens.map((it) => websiteData.find((item) => it === item._id));
   });
 
   return categoryData;
@@ -82,7 +66,7 @@ export const getDataBase = async () => {
 
 export const getDataByName = async (title) => {
   const webs = JSON.parse(localStorage.getItem('site') || '[]');
-  const websiteData = webs.map((it) => it.data);
+  const websiteData = webs;
 
   const backData = websiteData;
 
