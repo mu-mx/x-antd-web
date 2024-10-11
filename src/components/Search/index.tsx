@@ -75,7 +75,7 @@ export default function Index() {
             window.open(option.url, '_blank');
           }
 
-          setValue(undefined);
+          setValue('');
           getList();
         }}
         defaultActiveFirstOption={false}
