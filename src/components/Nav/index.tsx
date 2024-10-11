@@ -21,8 +21,9 @@ import {
 import StickyBox from 'react-sticky-box';
 import { RedoOutlined } from '@ant-design/icons';
 
-import CardItem from './CardItem';
-import { fetchData, getDataBase } from '@/utils/data'
+import CardItem from './CardItem.tsx';
+import { fetchData, getDataBase } from '@/utils/data';
+import { Link } from 'react-router-dom';
 
 export default function Index() {
   const [mode, setMode] = React.useState('top');
@@ -91,6 +92,12 @@ export default function Index() {
           span={4}
           offset={2}
         >
+          <div>
+            <Link target="_blank" to="/docs">
+              文档
+            </Link>
+          </div>
+          <br />
           <Anchor
             affix={false}
             style={{ maxHeight: '60vh', overflowY: 'auto' }}
@@ -106,7 +113,7 @@ export default function Index() {
 
         <Col
           span={14}
-          id='bigWrap'
+          id="bigWrap"
           style={{ overflowY: 'auto', height: '860px' }}
         >
           {data.map((_, i) => (
@@ -161,7 +168,7 @@ export default function Index() {
           bottom: '14%',
         }}
         icon={
-          <Tooltip title='刷新数据'>
+          <Tooltip title="刷新数据">
             <RedoOutlined />
           </Tooltip>
         }

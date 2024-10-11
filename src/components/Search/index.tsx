@@ -37,13 +37,10 @@ export default function Index() {
   };
 
   const onKeyDown = (e) => {
+    // 191 是 / 键  自动聚焦输入框 搜索
     if (e.keyCode === 191) {
-      // e.stopPropagation();
       e.preventDefault();
       select.current.focus();
-
-      // select.current.value = "";
-      // setValue(undefined);
     }
   };
 
@@ -55,7 +52,6 @@ export default function Index() {
     return () => {
       window.removeEventListener('keydown', onKeyDown); // 销毁
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -77,9 +73,10 @@ export default function Index() {
 
           if (newValue) {
             window.open(option.url, '_blank');
-          } else {
-            getList();
           }
+
+          setValue(undefined);
+          getList();
         }}
         defaultActiveFirstOption={false}
         filterOption={false}
