@@ -93,9 +93,12 @@ export default function Index() {
           offset={2}
         >
           <div>
-            <Link target="_blank" to="/docs">
-              文档
-            </Link>
+            <a
+              target="_blank"
+              href="https://doc-xw.netlify.app"
+            >
+              开发文档
+            </a>
           </div>
           <br />
           <Anchor
