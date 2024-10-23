@@ -84,7 +84,7 @@ export default function Index() {
         suffixIcon={<SearchOutlined />}
         options={(data || []).map((d) => ({
           ...d,
-          value: d._id,
+          value: d.url,
           label: `${d.title}`,
         }))}
         optionRender={(option) => (
