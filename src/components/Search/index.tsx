@@ -72,7 +72,7 @@ export default function Index() {
           setValue(newValue);
 
           if (newValue) {
-            window.open(option.url, '_blank');
+            window.open(option.url);
           }
 
           setValue('');
