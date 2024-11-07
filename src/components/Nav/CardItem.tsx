@@ -300,7 +300,6 @@ function CardItem({ data }) {
                 <a
                   href={item.url}
                   key='open'
-                  target='_blank'
                   rel='noreferrer'
                 >
                   <CloudOutlined /> 新标签打开
